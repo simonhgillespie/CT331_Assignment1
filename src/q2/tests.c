@@ -56,18 +56,13 @@ void runTests(){
   //test dequeue
   printf("About to start 6th traverse to test dequeueing 1 element\n");
   listElement *theDequeueued = dequeue(l);
-  //
+
   printf("\nPrint after dequeue\n");
   traverse(l);
 
   printf("\nPrint dequeued element\n");
   traverse(theDequeueued);
   printf("\n");
-
-
-
-
-
 
   printf("\nTests complete.\n");
 }
