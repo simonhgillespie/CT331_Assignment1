@@ -80,9 +80,18 @@ void push(listElement** list, char* data, size_t size) {
 
 
 listElement* pop(listElement** list) {
-	listElement* toRet = *list;
-	*list = toRet->next;
-	toRet->next = NULL;
+	listElement* toRet = NULL;
+	listElement* first = *list;
+	if (first->next == NULL)
+	{
+		listElement* toRet = *list;
+		first->data = NULL;
+	}
+	else {
+		listElement* toRet = *list;
+		*list = toRet->next;
+		toRet->next = NULL;
+	}
 	return toRet;
 }
 
@@ -96,18 +105,24 @@ listElement* dequeue(listElement* list) {
 	listElement* previous = list;
 	listElement* current = list;
 	listElement* toRet = NULL;
-	while (current != NULL) {
+	if (current->next == NULL) {
+		toRet = current;
+		current->data = NULL;
+	}
+	else {
+		while (current != NULL) {
 
-		if (current->next == NULL) {
-			toRet = current;
-			previous->next = NULL;
-			//printf("%s\n", current->data);
+			if (current->next == NULL) {
+				toRet = current;
+				previous->next = NULL;
+				//printf("%s\n", current->data);
+			}
+			else {
+				previous = current;
+			}
+
+			current = current->next;
 		}
-		else {
-			previous = current;
-		}
-		
-		current = current->next;
 	}
 	return toRet;
 }
